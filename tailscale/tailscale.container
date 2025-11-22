@@ -1,0 +1,18 @@
+[Unit]
+Description=Tailscale Podman Container
+Wants=network-online.target
+
+[Container]
+Image=docker.io/tailscale/tailscale:latest
+ContainerName=tailscale
+Network=host
+PodmanArgs=--privileged
+AutoUpdate=registry
+Environment=TS_HOSTNAME=${HOSTNAME}
+Environment=TS_STATE_DIR=/var/lib/tailscale
+Volume=/dev/net/tun:/dev/net/tun
+Volume=/var/lib/tailscale:/var/lib/tailscale
+
+[Install]
+WantedBy=default.target
+
