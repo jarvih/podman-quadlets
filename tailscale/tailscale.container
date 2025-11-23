@@ -8,7 +8,7 @@ ContainerName=tailscale
 Network=host
 PodmanArgs=--privileged
 AutoUpdate=registry
-Environment=TS_HOSTNAME=${HOSTNAME}
+Environment=TS_HOSTNAME=%H
 Environment=TS_STATE_DIR=/var/lib/tailscale
 Volume=/dev/net/tun:/dev/net/tun
 Volume=/var/lib/tailscale:/var/lib/tailscale
