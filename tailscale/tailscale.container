@@ -23,12 +23,17 @@ Environment=TS_STATE_DIR=/var/lib/tailscale
 Volume=/dev/net/tun:/dev/net/tun
 Volume=/var/lib/tailscale:/var/lib/tailscale:Z
 Volume=tmpfs:/tmp
-Volume=tmpfs:/run
+Volume=tmpfs:/var/run
 HealthCmd=/usr/local/bin/tailscale status --json
 HealthInterval=60s
 HealthTimeout=10s
 HealthRetries=3
 HealthStartPeriod=30s
+
+[Service]
+StateDirectory=tailscale
+Restart=on-failure
+RestartSec=10s
 
 [Install]
 WantedBy=default.target
